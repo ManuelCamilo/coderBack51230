@@ -15,6 +15,7 @@ app.get('/products', (request, response) => {
     } else {
         response.send(products);
     }
+    
 });
 
 //endpoint /product/:pid
@@ -31,3 +32,5 @@ app.get('/products/:pid', (request, response) => {
 });
 
 app.listen(8080, () => console.log('server up'))
+
+//errores varios-
