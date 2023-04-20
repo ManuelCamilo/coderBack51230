@@ -1,19 +1,26 @@
-const ProductManager = require ('./ProductManager');
+const ProductManager = require ('./ProductManager'); //forma vieja de importar - 
 
 const express = require ('express');
 const app = express()
 
-// const item = new ProductManager('./products.txt')
 
 //endpoint /products
 app.get('/products', (request, response) => {
-    limit = request.query.limit;    // query param limit
+    limit = request.query.limit;    // query params
     const products = ProductManager.getProducts();
+    const total = products.length
 
-    if(limit) {
+    if(limit && limit > total) {
+        const message = `La cantidad limite de productos es ${total}`;
+        const data = {
+            message: message,
+            products: products.slice(0,total) 
+        }
+            response.send(data)
+    } else if (limit) {
         response.send(products.slice(0, limit));
     } else {
-        response.send(products);
+        response.send(products)
     }
     
 });
@@ -21,9 +28,8 @@ app.get('/products', (request, response) => {
 //endpoint /product/:pid
 
 app.get('/products/:pid', (request, response) => {
-    const id = parseInt(request.params.pid);
+    const id = parseInt(request.params.pid);    // URL params
     const product = ProductManager.getProductById(id);
-
     if (product) {
         response.send(product);
     } else {
@@ -31,6 +37,8 @@ app.get('/products/:pid', (request, response) => {
     }
 });
 
-app.listen(8080, () => console.log('server up'))
 
-//errores varios-
+
+app.listen(8080, () => console.log('Server Up'))
+
+

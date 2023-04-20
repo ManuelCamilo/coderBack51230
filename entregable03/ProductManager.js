@@ -60,7 +60,7 @@ class ProductManager{
 
 const item = new ProductManager('./products.txt')
 const primerProducto = {
-    title: 'Osito teddy',
+    title: 'Osito teddy ',
     description:'oso peluche teddy 3% algodón',
     price: 8400,
     thumbnail: 'none',
@@ -68,7 +68,7 @@ const primerProducto = {
     stock: 10,
 }
 const segundoProducto = {
-    title: 'Espada samuray',
+    title: 'Espada samuray', 
     description:'Espada antigua real con firma',
     price: 130000,
     thumbnail: 'none',
@@ -84,15 +84,23 @@ const tercerProducto = {
     stock: 200,
 }
 
-// Agregamos el producto a la lista.
+const products = item.getProducts()
+
+
+/*
+Agregar-
 const agregarProducto = item.addProduct(tercerProducto)
 
+
+Modificar valor-
 const actualizarProducto = item.updateProduct(1, {
     price: 10000,
 })
 
+Eliminar-
 const eliminarProducto = item.deleteProduct(1)
 
-const products = item.getProducts()
 
+*/
 
+module.exports = item;
